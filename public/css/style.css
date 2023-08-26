@@ -1,0 +1,21 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+.box-link{
+    margin-top: 20px;
+}
+.link{
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 3px;
+    background: #000;
+    color: #fff;
+    font-weight: 600;
+    font-size: 17px;
+}

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+    <title><%= title.title %></title>
+</head>
+<body>
+    <div>
+        <h1>Home Ejs</h1>
+        <ul>
+            <% data.forEach(item => { %>
+                <li>ID: <%=item.id%> <%= item.name %> - <%= item.age %> anos com a altura de <%= item.height %></li>
+                <hr>
+            <% }); %>
+            
+        </ul>
+    </div>
+    <div class="box-link">
+        <a class="link" href="/form">Ir para o formulário</a>
+        <a class="link" href="/removeId">Remover um formulário</a>
+    </div>
+</body>
+</html>
