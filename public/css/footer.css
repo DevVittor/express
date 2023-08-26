@@ -1,0 +1,85 @@
+.container-footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: #212121;
+    padding: 20px;
+    color: #fff;
+}
+.box-footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.box-footer h2{
+    font-size: 32px;
+    font-weight: 600;
+}
+.box-footer p{
+    padding:10px 0 ;
+    text-align: center;
+    width: 400px;
+}
+
+.footer-social ul{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.footer-social a{
+    font-size: 24px;   
+    color: #fff;
+}
+.container-create{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 50px;
+    background: #000;
+}
+.box-direito{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.box-create h3{
+    font-size: 16px;
+    color: #fff;
+}
+.box-create a{
+    color: yellow;
+}
+.box-create a:hover{
+    text-decoration: underline;
+    color: yellow;
+}
+.direitos span{
+    font-size: 16px;
+    font-weight: 400;
+    color: #fff;
+}
+.social-create ul{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.social-create a{
+    color: #fff;
+    font-size: 24px;
+}
+@media screen and (max-width: 770px){
+    .container-create{
+        flex-direction: column;
+        gap: 10px;
+    }
+    .box-direito{
+        flex-direction: column;
+        gap: 10px;
+    }
+    .box-create h3{
+        font-size: 20px;
+        color: #fff;
+    }
+}

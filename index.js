@@ -22,7 +22,6 @@ app.get("/", async (__, res) => {
             order:[['id','DESC']]
         });
         res.render("Home", { data,title });
-        console.log(data);
     } catch (error) {
         console.error("Erro ao buscar os dados:", error);
         res.render("Home", { data: [] });

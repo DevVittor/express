@@ -1,0 +1,47 @@
+header{
+    position: sticky;
+    top: 0;
+}
+.container-menu{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 80px;
+    background: #000;
+    color: #fff;
+}
+.box-logo a{
+    font-size: 24px;
+    font-weight: 600;
+    color: #000;
+}
+.box-logo h1{
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    background: #fff;
+    border-radius: 3px;
+}
+.box-menu ul{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.box-menu a{
+    color: #fff;
+    font-weight: 500;
+    font-size: 16px;
+}
+@media screen and (max-width: 770px){
+    .container-menu{
+        padding: 10px 30px;
+    }
+}
+@media screen and (max-width: 640px){
+    .container-menu{
+        padding: 10px 20px;
+        flex-direction: column;
+        gap: 10px;
+    }
+}
