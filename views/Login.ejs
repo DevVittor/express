@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <%- include('header') -%>
+    <main>
+        <section>
+            <form action="/login/save" method="post">
+                <div class="" style="height: 100vh; display: flex; justify-content: center; align-items: center; flex-direction: column; gap: 10px;">
+                    <input type="email" name="email" id="" placeholder="Email">
+                    <input type="password" name="password" id="" placeholder="Password">
+                    <input type="submit"value="Entrar">
+                </div>
+            </form>
+        </section>
+    </main>
+    <%- include("footer") -%>
+</body>
+</html>

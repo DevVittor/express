@@ -2,6 +2,8 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser")
 const User = require("./models/User");
+const Login = require("./models/Login");
+const bcrypt = require("bcrypt");
 
 require("./database/conn");
 require("dotenv").config();
@@ -61,6 +63,55 @@ app.post("/save",(req,res)=>{
     }).then(()=>{
         res.redirect("/");
     }).catch(error=>console.log(`Não deu por causa disso ${error}`));
+});
+
+app.get("/register",(req,res)=>{
+    res.render("Register")
+})
+
+app.post("/register/save",async(req,res)=>{
+    var myEmail = req.body.email;
+    var myPassword = req.body.password;
+
+    const salt = bcrypt.genSaltSync(16);
+    const hash = bcrypt.hashSync(myPassword,salt);
+
+
+    try{
+        const registrar = await Login.create({
+            email:myEmail,
+            password: hash
+        });
+        console.log(registrar);
+        res.redirect("/");
+    }catch(error){
+        console.error(error)
+    };
+});
+app.get("/login",(req,res)=>{
+    res.render("Login");
+})
+
+app.post("/login/save",async(req,res)=>{
+    const loginEmail = req.body.email;
+    const loginPassword = req.body.password;
+    try{
+        const idUser = await Login.findOne({
+            where:{email:loginEmail,password:loginPassword},
+            attributes:['email','password']
+        });
+        if(idUser.email && idUser.password){
+            
+            const email =await idUser.email;
+            const senha = await idUser.password;
+
+            console.log(`Foi encontrado com sucesso o email ${email} com a senha ${senha}`);
+            res.redirect("/");
+        }
+    }catch(error){
+        console.error(`Não foi encontrado nada no banco de dados e causou esse error ${error}`);
+        res.redirect("/");
+    }
 });
 
 const port = process.env.PORT || 3000;
