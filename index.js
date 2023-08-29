@@ -4,6 +4,7 @@ const bodyParser = require("body-parser")
 const User = require("./models/User");
 const Login = require("./models/Login");
 const bcrypt = require("bcrypt");
+const MercadoPago = require('mercadopago');
 
 require("./database/conn");
 require("dotenv").config();
@@ -14,6 +15,11 @@ app.use(express.static("public"));
 app.use('/favicon.png', express.static("public/favicon.png"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
+
+MercadoPago.configure({
+    sandbox:true,
+    access_token: process.env.TOKEN_TEST_MERCADO_PAGO, 
+});
 
 app.get("/", async (__, res) => {
     try {
@@ -28,6 +34,40 @@ app.get("/", async (__, res) => {
         console.error("Erro ao buscar os dados:", error);
         res.render("Home", { data: [] });
     }
+});
+
+app.get("/pagar",async(req,res)=>{
+
+    const id_Product = "" + Date.now();
+    const email_User = "vittorak47@gmail.com";
+
+    const dados = {
+        items: [
+            item ={
+                id:id_Product,
+                title:"Camisa Branca",
+                description:"Apenas uma camisa branca",
+                quantity:1,
+                unit_price:parseFloat(150),
+                currency_id:"BRL",
+            },
+        ],
+        payer:{ 
+            email:email_User,
+        },
+        external_reference:id_Product,
+    }
+
+    try {
+        const pagamentoMercadoPago =await  MercadoPago.preferences.create(dados);
+        console.log(pagamentoMercadoPago);
+        return res.redirect(pagamentoMercadoPago.body.init_point);
+        
+    } catch (error) {
+        console.error(error);
+    }
+    res.redirect("http://localhost:8080/");
+
 });
 
 app.get("/form",(__,res)=>{

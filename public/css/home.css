@@ -1,7 +1,7 @@
 .container-banner{
     display: flex;
     justify-content: center;
-align-items: center;
+    align-items: center;
 }
 .box-banner{
     height: 600px;
@@ -80,19 +80,21 @@ align-items: center;
     padding-right: 10px;
 }
 @media screen and (max-width: 1200px){
-    .container-products{
-        background: blue;
+    .box-banner{
+        height: 400px;
+        width: 100%;
     }
 }
 @media screen and (max-width: 990px){
-    .container-products{
-        background: yellow;
-    }
+    /*Base*/
 }
 @media screen and (max-width: 770px){
+    .box-banner{
+        height: 350px;
+        width: 100%;
+    }
     .container-products{
         flex-direction: column;
-        background: red;
         gap: 20px;
     }
     .box-filter{
@@ -102,7 +104,8 @@ align-items: center;
     }
 }
 @media screen and (max-width: 640px){
-    .container-products{
-        background: green;
+    .box-banner{
+        height: 300px;
+        width: 100%;
     }
 }
