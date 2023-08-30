@@ -15,6 +15,9 @@ app.use(express.static("public"));
 app.use('/favicon.png', express.static("public/favicon.png"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
+app.use((req, res, next) => {
+    req.path.endsWith('/') ? next() : res.redirect(req.path + '/');
+});
 
 MercadoPago.configure({
     sandbox:true,
@@ -67,17 +70,16 @@ app.get("/pagar",async(req,res)=>{
         console.error(error);
     }
     res.redirect("http://localhost:8080/");
-
 });
 
-app.get("/form",(__,res)=>{
+app.get("/form/",(__,res)=>{
     const title = {
         title: 'Formulário'
     }
     res.render("Form",{title:title});
 });
 
-app.get("/removeId",(req,res)=>{
+app.get("/removeId/",(req,res)=>{
     res.render("Remove");
 });
 
@@ -105,7 +107,7 @@ app.post("/save",(req,res)=>{
     }).catch(error=>console.log(`Não deu por causa disso ${error}`));
 });
 
-app.get("/register",(req,res)=>{
+app.get("/register/",(req,res)=>{
     res.render("Register")
 })
 
@@ -128,7 +130,7 @@ app.post("/register/save",async(req,res)=>{
         console.error(error)
     };
 });
-app.get("/login",(req,res)=>{
+app.get("/login/",(req,res)=>{
     res.render("Login");
 })
 
